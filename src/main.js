@@ -225,8 +225,10 @@ textAngular.directive("textAngular", [
                     //console.log(spaceAboveImage, spaceBelowImage);
 
                     /* istanbul ignore if: catches only if near bottom of editor */
-                    if(spaceAboveImage < 51) {
-                        scope.displayElements.popover.css('top', _el[0].offsetTop + _el[0].offsetHeight + scope.displayElements.scrollWindow[0].scrollTop + 'px');
+                    if (spaceAboveImage < 51) {
+                        var top = (_el[0].offsetTop + _el[0].offsetHeight - scope.displayElements.scrollWindow[0].scrollTop) > 100 ?
+                            54 + scope.displayElements.scrollWindow[0].scrollTop : _el[0].offsetTop + _el[0].offsetHeight - 54;
+                        scope.displayElements.popover.css('top', top + 'px');
                         scope.displayElements.popover.removeClass('top').addClass('bottom');
                     } else {
                         scope.displayElements.popover.css('top', _el[0].offsetTop - 54 + scope.displayElements.scrollWindow[0].scrollTop + 'px');
